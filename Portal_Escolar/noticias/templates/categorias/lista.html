@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Categorias{% endblock %}
+
+
+
+{% block content %}
+<h2>Lista de Categorias</h2>
+
+<div class="lista">
+
+    {% for categoria in categorias %}
+
+        <div class="card">
+            <h3>{{ categoria.nome }}</h3>
+            <a href="{% url 'detalhe_categorias' categoria.id %}">Ver detalhes</a>
+        </div>
+
+    {% empty %}
+
+        <p>Nenhuma categoria cadastrada.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+

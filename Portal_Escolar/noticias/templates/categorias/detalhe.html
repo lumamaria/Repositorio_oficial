@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ categoria.nome }}{% endblock %}
+
+
+
+{% block content %}
+<h2>{{ categoria.nome }}</h2>
+
+<h3>Notícias desta categoria</h3>
+
+<div class="lista">
+
+    {% for noticia in categoria.noticias.all %}
+
+        <div class="card">
+            <h3>{{ noticia.titulo }}</h3>
+
+            <p>{{ noticia.texto }}</p>
+
+            <a href="{% url 'detalhe_noticias' noticia.id %}">Ver notícia</a>
+        </div>
+
+    {% empty %}
+
+        <p>Não existem notícias nesta categoria.</p>
+
+    {% endfor %}
+
+</div>
+
+<a class="voltar" href="{% url 'lista_categorias' %}">
+    Voltar para categorias
+</a>
+
+{% endblock %}

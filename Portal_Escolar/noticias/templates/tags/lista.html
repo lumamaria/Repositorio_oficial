@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tags{% endblock %}
+
+
+
+{% block content %}
+<h2>Lista de Tags</h2>
+
+<div class="lista">
+
+    {% for tag in tags %}
+
+        <div class="card">
+
+            <h3>{{ tag.titulo }}</h3>
+
+            <a href="{% url 'detalhe_tags' tag.id %}">Ver detalhes</a> 
+        </div>
+
+    {% empty %}
+
+        <p>Nenhuma tag cadastrada.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

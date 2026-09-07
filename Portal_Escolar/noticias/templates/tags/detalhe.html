@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ tag.titulo }}{% endblock %}
+
+
+
+{% block content %}
+<h2>Tag: {{ tag.titulo }}</h2>
+
+<h3>Notícias com esta tag</h3>
+
+<div class="lista">
+
+    {% for noticia in tag.noticias.all %}
+
+        <div class="card">
+
+            <h3>{{ noticia.titulo }}</h3>
+
+            <p>{{ noticia.texto }}</p>
+
+            <a href="{% url 'detalhe_noticias' noticia.id %}">Ver notícia</a>
+
+        </div>
+
+    {% empty %}
+
+        <p>Não existem notícias com esta tag.</p>
+
+    {% endfor %}
+
+</div>
+
+
+<a class="voltar" href="{% url 'lista_tags' %}">
+    Voltar para tags
+</a>
+
+{% endblock %}

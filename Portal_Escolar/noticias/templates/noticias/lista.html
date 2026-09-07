@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Notícias{% endblock %}
+
+
+
+{% block content %}
+<h2>Lista de Notícias</h2>
+
+<div class="lista">
+
+    {% for noticia in noticias %}
+
+        <div class="card">
+
+            <h3>{{ noticia.titulo }}</h3>
+
+            <p>{{ noticia.texto }}</p>
+
+            <p>
+                <strong>Categoria:</strong>
+                {{ noticia.categoria.nome }}
+            </p>
+            <a href="{% url 'detalhe_noticias' noticia.id %}">Ler notícia completa</a>
+
+        </div>
+
+    {% empty %}
+
+        <p>Nenhuma notícia cadastrada.</p>
+
+    {% endfor %}
+
+</div>
+{% endblock %}
