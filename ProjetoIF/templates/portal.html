@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Início | ProjetoIF
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            Extensão acadêmica
+        </div>
+
+        <h1>
+            PROJETOS<br>
+            DE EXTENSÃO
+        </h1>
+
+        <p>
+            Conheça os projetos de extensão, suas categorias
+            e os alunos que fazem parte das equipes do ProjetoIF.
+        </p>
+
+        <a href="{% url 'listagem_projetos' %}"
+           class="hero-button">
+
+            CONHEÇA OS PROJETOS
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="container">
+
+    <h2 class="page-title">
+        ProjetoIF
+    </h2>
+
+    <p class="page-subtitle">
+        Um espaço para visualizar os projetos de extensão acadêmica.
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                Projetos
+            </h3>
+
+            <p>
+                Consulte os projetos cadastrados e veja suas
+                categorias, descrições e equipes.
+            </p>
+
+            <a href="{% url 'listagem_projetos' %}"
+               class="project-link">
+
+                Ver projetos →
+
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Alunos
+            </h3>
+
+            <p>
+                Conheça os alunos participantes e confira os
+                projetos dos quais cada um faz parte.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Extensão
+            </h3>
+
+            <p>
+                Acompanhe as iniciativas de extensão desenvolvidas
+                pela comunidade acadêmica.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

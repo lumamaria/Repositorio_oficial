@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Projetos | ProjetoIF
+{% endblock %}
+
+
+{% block content %}
+
+<section class="container">
+
+    <h1 class="page-title">
+        Projetos de Extensão
+    </h1>
+
+    <p class="page-subtitle">
+        Confira os projetos cadastrados no ProjetoIF.
+    </p>
+
+
+    <div class="project-list">
+
+        {% for projeto in projetos %}
+
+        <div class="project-item">
+
+            <div>
+
+                <h3>
+                    {{ projeto.titulo }}
+                </h3>
+
+                <span class="category">
+
+                    {{ projeto.categoria.nome }}
+
+                </span>
+
+            </div>
+
+
+            <a href="{% url 'detalhes_projeto' projeto.id %}"
+               class="details-button">
+
+                Ver detalhes
+
+            </a>
+
+        </div>
+
+
+        {% empty %}
+
+        <div class="card">
+
+            <h3>
+                Nenhum projeto cadastrado
+            </h3>
+
+            <p>
+                Ainda não existem projetos cadastrados no sistema.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

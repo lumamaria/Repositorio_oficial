@@ -23,6 +23,8 @@ class ProjetoAdmin(admin.ModelAdmin):
     list_filter = ('categoria', 'data_inicio')
 
 
+
+
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Aluno, AlunoAdmin)
 admin.site.register(PerfilAcademico, PerfilAcademicoAdmin)

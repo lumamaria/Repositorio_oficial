@@ -1,0 +1,484 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}ProjetoIF{% endblock %}</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f8fc;
+            color: #17324d;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* CABEÇALHO */
+
+        header {
+            height: 72px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1167b1;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 7px;
+            background-color: #1167b1;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: #34495e;
+        }
+
+        nav a:hover {
+            color: #0876bd;
+        }
+
+        .btn-nav {
+            background-color: #f39a36;
+            color: white !important;
+            padding: 10px 22px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* CONTEÚDO */
+
+        main {
+            flex: 1;
+        }
+
+        /* HOME */
+
+        .hero {
+            min-height: 390px;
+            background: linear-gradient(
+                120deg,
+                #07579c,
+                #1587c9 55%,
+                #6dc4d5
+            );
+
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 55px 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-small {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 570px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #f39a36;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .hero-button:hover {
+            background-color: #df8524;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 84%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        .page-title {
+            color: #07579c;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #667788;
+            margin-bottom: 30px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(260px, 1fr)
+            );
+
+            gap: 22px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #1384c6;
+        }
+
+        .card h3 {
+            color: #07579c;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #617080;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: #0876bd;
+            font-weight: bold;
+        }
+
+        /* LISTAGEM */
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .project-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .project-item h3 {
+            color: #07579c;
+            margin-bottom: 7px;
+        }
+
+        .category {
+            display: inline-block;
+            background-color: #e6f4fc;
+            color: #0876bd;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .details-button {
+            background-color: #0876bd;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .details-button:hover {
+            background-color: #07579c;
+        }
+
+        /* DETALHES */
+
+        .detail-box {
+            background-color: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            margin-top: 25px;
+        }
+
+        .detail-box h2 {
+            color: #07579c;
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            color: #07579c;
+            font-weight: bold;
+            margin-top: 18px;
+            margin-bottom: 7px;
+        }
+
+        .detail-text {
+            color: #596b7a;
+            line-height: 1.7;
+        }
+
+        .student-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .student-list li {
+            background-color: #f1f7fb;
+            margin-bottom: 8px;
+            padding: 12px 15px;
+            border-radius: 5px;
+        }
+
+        .student-list a {
+            color: #0876bd;
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #0876bd;
+            font-weight: bold;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            background-color: #17324d;
+            color: #dbe8f2;
+            margin-top: auto;
+            padding: 35px 8% 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            color: #b9c9d6;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-top: 25px;
+            padding-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            color: #9fb1bf;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            .hero {
+                padding: 45px 7%;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .project-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <a href="{% url 'home' %}" class="logo">
+            <span class="logo-icon">IF</span>
+            ProjetoIF
+        </a>
+
+        <nav>
+
+            <a href="{% url 'home' %}">
+                Início
+            </a>
+
+            <a href="{% url 'listagem_projetos' %}">
+                Projetos
+            </a>
+
+            <a href="#">
+                Sobre
+            </a>
+
+            <a href="{% url 'admin:index' %}" class="btn-nav">
+                Admin
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-column">
+
+                <h3>ProjetoIF</h3>
+
+                <p>
+                    Sistema de Gestão de Projetos de Extensão.
+                </p>
+
+                <p>
+                    IFRN - Instituto Federal do Rio Grande do Norte
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Navegação</h3>
+
+                <p>
+                    <a href="{% url 'home' %}">
+                        Início
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'listagem_projetos' %}">
+                        Projetos
+                    </a>
+                </p>
+
+                <p>
+                    <a href="{% url 'admin:index' %}">
+                        Área administrativa
+                    </a>
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>ProjetoIF</h3>
+
+                <p>
+                    Projetos de extensão, alunos e conhecimento.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 ProjetoIF - Todos os direitos reservados.
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

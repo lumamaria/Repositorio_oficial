@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ aluno.nome }} | ProjetoIF
+{% endblock %}
+
+
+{% block content %}
+
+<section class="container">
+
+    <h1 class="page-title">
+        Detalhes do Aluno
+    </h1>
+
+
+    <div class="detail-box">
+
+        <h2>
+            {{ aluno.nome }}
+        </h2>
+
+
+        <p class="detail-label">
+            Matrícula
+        </p>
+
+        <p class="detail-text">
+            {{ aluno.matricula }}
+        </p>
+
+
+        <p class="detail-label">
+            Projetos que participa
+        </p>
+
+
+        <ul class="student-list">
+
+            {% for projeto in aluno.projeto_set.all %}
+
+            <li>
+
+                <a href="{% url 'detalhes_projeto' projeto.id %}">
+
+                    {{ projeto.titulo }}
+
+                </a>
+
+                <br>
+
+                <span class="detail-text">
+
+                    {{ projeto.categoria.nome }}
+
+                </span>
+
+            </li>
+
+
+            {% empty %}
+
+            <li>
+                Este aluno não participa de nenhum projeto.
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+
+        <a href="{% url 'listagem_projetos' %}"
+           class="back-link">
+
+            ← Voltar para projetos
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
